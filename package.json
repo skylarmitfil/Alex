@@ -13,3 +13,5 @@
     "dotenv": "^16.4.7"
   }
 }
+
+    once: true, // This event only runs once when the bot boots
