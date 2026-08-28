@@ -33,4 +33,5 @@ module.exports = {
         }, 15000);
     },
 };
- // the '15000' is in milliseconds(ms) so if you want it to change faster for a test do "10000 - 15000" - every 10 seconds or 15 seconds - if you want it to change less do something like "1800000" - every 30 minutes.
+ // the '15000' is in milliseconds(ms)
+// if you want it to change faster for a test do "10000 - 15000" - every 10 seconds or 15 seconds - if you want it to change less do something like "1800000" - every 30 minutes.
