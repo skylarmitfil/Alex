@@ -1,5 +1,3 @@
-const { EmbedBuilder } = require('discord.js');
-
 module.exports = {
     name: 'help',
     aliases: ['h', 'commands'],
@@ -25,7 +23,7 @@ module.exports = {
                 help_utilities: utilityText
             };
 
-            // 2. Build out your raw component payload structures
+            // 2. Build out payload structures wrapped correctly inside Action Rows (Type 1)
             const buildV2Payload = (selectedKey = 'help_main', disabled = false) => {
                 const placeholders = {
                     help_main: 'Core Utilities',
@@ -33,46 +31,36 @@ module.exports = {
                 };
 
                 return {
+                    // We send the layout text directly in the message body
+                    content: contents[selectedKey],
+                    // Components must always start with an Action Row (Type 1)
                     components: [
                         {
-                            type: 17, // Modern Container Component frame
-                            accent_color: 9031664, // Hex #89CFF0 in decimal
+                            type: 1, // ActionRow (Valid top-level component)
                             components: [
                                 {
-                                    type: 1, // ActionRow
-                                    components: [
+                                    type: 3, // String Select Menu Component
+                                    custom_id: 'help_select_menu',
+                                    placeholder: placeholders[selectedKey],
+                                    disabled: disabled,
+                                    options: [
                                         {
-                                            type: 3, // String Select Menu Component
-                                            custom_id: 'help_select_menu',
-                                            placeholder: placeholders[selectedKey],
-                                            disabled: disabled,
-                                            options: [
-                                                {
-                                                    label: 'Core Utilities',
-                                                    description: 'View bot core and latency configuration',
-                                                    value: 'help_main',
-                                                    emoji: { id: null, name: '⚙️' },
-                                                    default: selectedKey === 'help_main'
-                                                },
-                                                {
-                                                    label: 'Profile Inspector',
-                                                    description: 'View avatar and profile background banners',
-                                                    value: 'help_utilities',
-                                                    emoji: { id: null, name: '🖼️' },
-                                                    default: selectedKey === 'help_utilities'
-                                                }
-                                            ]
+                                            label: 'Core Utilities',
+                                            description: 'View bot core and latency configuration',
+                                            value: 'help_main',
+                                            emoji: { id: null, name: '⚙️' },
+                                            default: selectedKey === 'help_main'
+                                        },
+                                        {
+                                            label: 'Profile Inspector',
+                                            description: 'View avatar and profile background banners',
+                                            value: 'help_utilities',
+                                            emoji: { id: null, name: '🖼️' },
+                                            default: selectedKey === 'help_utilities'
                                         }
                                     ]
-                                },
-                                {
-                                    type: 14 // Visual Layout Line Separator
-                                },
-                                {
-                                    type: 10, // Modern Native TextDisplay component
-                                    content: contents[selectedKey]
                                 }
-                            ] // Fixed syntax here (removed rogue character)
+                            ]
                         }
                     ]
                 };
@@ -88,7 +76,7 @@ module.exports = {
                 if (interaction.user.id !== message.author.id) {
                     return interaction.reply({ content: '❌ This menu is not for you!', ephemeral: true });
                 }
-                const selectedValue = interaction.values[0]; // Fixed to extract the first string element from the array
+                const selectedValue = interaction.values[0]; // Extract selection string safely
                 await interaction.update(buildV2Payload(selectedValue, false));
             });
 
