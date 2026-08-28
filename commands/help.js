@@ -1,3 +1,5 @@
+const { EmbedBuilder } = require('discord.js');
+
 module.exports = {
     name: 'help',
     aliases: ['h', 'commands'],
@@ -5,15 +7,13 @@ module.exports = {
         try {
             const prefix = message.client.prefix || '.';
 
-            // 1. Define your modern text blocks
-            const mainText = `### Alexis Command Menu\n` +
-                `Welcome to the utility center! Select a category below to navigate.\n\n` +
+            // 1. Define your beautiful formatted contents
+            const mainText = `Welcome to the utility center! Select a category below to navigate.\n\n` +
                 `**Core Commands:**\n` +
                 `┃ \`${prefix}help\` *(h, commands)* — Opens this interactive utility interface\n` +
                 `┃ \`${prefix}ping\` — Check the current live connection latency`;
 
-            const utilityText = `### Alexis Command Menu\n` +
-                `Welcome to the utility center! Select a category below to navigate.\n\n` +
+            const utilityText = `Welcome to the utility center! Select a category below to navigate.\n\n` +
                 `**Profile Tools:**\n` +
                 `┃ \`${prefix}avatar\` *(av)* — View and download high-resolution profile pictures\n` +
                 `┃ \`${prefix}banner\` *(bn, bnr)* — Inspect and download user background banners`;
@@ -23,20 +23,29 @@ module.exports = {
                 help_utilities: utilityText
             };
 
-            // 2. Build out payload structures wrapped correctly inside Action Rows (Type 1)
+            // 2. Build out payload structures using rich Embeds
             const buildV2Payload = (selectedKey = 'help_main', disabled = false) => {
                 const placeholders = {
                     help_main: 'Core Utilities',
                     help_utilities: 'Profile Inspector'
                 };
 
+                const titles = {
+                    help_main: '⚙️ Alexis Core Utilities',
+                    help_utilities: '🖼️ Alexis Profile Inspector'
+                };
+
+                // Create the embed visual container block
+                const helpEmbed = new EmbedBuilder()
+                    .setColor('#89CFF0') // Your signature light blue color accent
+                    .setTitle(titles[selectedKey])
+                    .setDescription(contents[selectedKey]);
+
                 return {
-                    // We send the layout text directly in the message body
-                    content: contents[selectedKey],
-                    // Components must always start with an Action Row (Type 1)
+                    embeds: [helpEmbed], // Embed array structure
                     components: [
                         {
-                            type: 1, // ActionRow (Valid top-level component)
+                            type: 1, // ActionRow
                             components: [
                                 {
                                     type: 3, // String Select Menu Component
@@ -76,7 +85,7 @@ module.exports = {
                 if (interaction.user.id !== message.author.id) {
                     return interaction.reply({ content: '❌ This menu is not for you!', ephemeral: true });
                 }
-                const selectedValue = interaction.values[0]; // Extract selection string safely
+                const selectedValue = interaction.values[0]; // Safely grab string index 
                 await interaction.update(buildV2Payload(selectedValue, false));
             });
 
