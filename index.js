@@ -11,7 +11,10 @@ const client = new Client({
     ] 
 });
 
-// --- 1. This Will Load All Command Files ---
+// Add Your Own Prefix You Disire.
+client.prefix = process.env.PREFIX || '.'; 
+
+// --- 1. Loads All Command Files ---
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
@@ -25,7 +28,7 @@ for (const file of commandFiles) {
     }
 }
 
-// --- 2. This Will Load Alll Event Files ---
+// --- 2. Loads All Event Files ---
 const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
