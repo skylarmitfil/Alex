@@ -38,7 +38,7 @@ client.once(Events.ClientReady, (readyClient) => {
 client.on(Events.MessageCreate, async (message) => {
     if (message.author.bot || !message.content.startsWith(PREFIX)) return;
 
-    const args = message.content.slice(PREFIX.length).trim().split(/+/);
+const args = message.content.slice(PREFIX.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
 
     // Dynamically grab the command from our collection
