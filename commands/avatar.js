@@ -18,16 +18,12 @@ module.exports = {
         // 3. Build out the standard image display link
         const avatarUrl = user.displayAvatarURL({ size: 1024, dynamic: true });
 
-        // 4. Create the embed structure with light blue color
+        // 4. Create the embed structure without the footer block
         const avatarEmbed = new EmbedBuilder()
-            .setColor('#89CFF0') // Light Blue Hex Code
+            .setColor('#89CFF0') 
             .setTitle(`${user.username}'s Avatar`)
             .setDescription(`**Links:** [PNG](${pngUrl}) | [JPG](${jpgUrl}) | [WEBP](${webpUrl})${gifUrl ? ` | [GIF](${gifUrl})` : ''}`)
-            .setImage(avatarUrl)
-            .setFooter({ 
-                text: `Requested by ${message.author.username}`, 
-                iconURL: message.author.displayAvatarURL({ dynamic: true }) 
-            });
+            .setImage(avatarUrl);
 
         // 5. Send the embedded card frame directly back
         await message.reply({ embeds: [avatarEmbed] }); 
