@@ -11,8 +11,10 @@ module.exports = {
         const args = message.content.slice(PREFIX.length).trim().split(/ +/);
         const commandName = args.shift().toLowerCase();
 
-        // Access the commands collection attached to the client
-        const command = message.client.commands.get(commandName);
+        // FIX: Look up by main name OR search inside the aliases array
+        const command = message.client.commands.get(commandName)
+            || message.client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+
         if (!command) return;
 
         try {
