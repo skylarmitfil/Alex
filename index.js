@@ -1,10 +1,11 @@
 require('dotenv').config();
-const { Client, GatewayIntentBits } = require('discord.js');
+const { Client, GatewayIntentBits, Events } = require('discord.js');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-client.once('ready', () => {
-    console.log(`${client.user.tag} is now ONLINE!`);
+// Changed 'ready' to Events.ClientReady to fix the warning
+client.once(Events.ClientReady, (readyClient) => {
+    console.log(`${readyClient.user.tag} is now ONLINE!`);
 });
 
 client.login(process.env.DISCORD_TOKEN);
