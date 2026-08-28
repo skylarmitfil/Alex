@@ -4,9 +4,10 @@ module.exports = {
     name: Events.ClientReady,
     once: true, // This event only runs once when the bot boots
     execute(readyClient) {
+        // You can change the "is Available" this is ony for your log.
         console.log(`${readyClient.user.tag} is Avaliable.`);
 
-        // Define your array of multiple status messages
+        // You can freely pick these or change them around.
         const statusOptions = [
             { name: ' With Fire', type: ActivityType.Playing },
             { name: 'To You', type: ActivityType.Listening },
