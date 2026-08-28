@@ -5,6 +5,6 @@ module.exports = {
         const wsPing = message.client.ws.ping;
         
         // Reply to the text message
-        await message.reply(`🏓 Pong! WebSocket Ping is **${wsPing}ms**`);
+        await message.reply(`🏓 Pong! here's my ping **${wsPing}ms**`);
     },
 };
