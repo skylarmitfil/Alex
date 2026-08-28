@@ -1,6 +1,5 @@
 {
-  "name": "Alexis", 
-//replace with your bots name
+  "name": "Alexis", // replace with your bots name.
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
