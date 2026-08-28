@@ -5,7 +5,13 @@ module.exports = {
         try {
             const prefix = message.client.prefix || '.';
 
-            // 1. Your clean, modern markdown text blocks
+            // 1. Defined text blocks including the new landing view
+            const landingText = `### 👋 Welcome to Alexis!\n` +
+                `I am your server utility assistant. Please select a category from the dropdown menu below to view my available commands.\n\n` +
+                `**Quick Information:**\n` +
+                `┃ *Current Prefix:* \`${prefix}\`\n` +
+                `┃ *Developers:* Look inside the code!`;
+
             const mainText = `### Alexis Command Menu\n` +
                 `Welcome to the utility center! Select a category below to navigate.\n\n` +
                 `**Core Commands:**\n` +
@@ -19,24 +25,25 @@ module.exports = {
                 `┃ \`${prefix}banner\` *(bn, bnr)* — Inspect and download user background banners`;
 
             const contents = {
+                help_landing: landingText,
                 help_main: mainText,
                 help_utilities: utilityText
             };
 
             // 2. Build out the pure V2 Components structure
-            const buildV2Payload = (selectedKey = 'help_main', disabled = false) => {
+            const buildV2Payload = (selectedKey = 'help_landing', disabled = false) => {
                 const placeholders = {
+                    help_landing: 'Select a category...',
                     help_main: 'Core Utilities',
                     help_utilities: 'Profile Inspector'
                 };
 
                 return {
-                    // Discord enforces this flag to use Type 17 and Type 10 components
                     flags: 32768, 
                     components: [
                         {
-                            type: 17, // The modern native visual Container frame
-                            accent_color: 9031664, // Hex #89CFF0 translated to base-10 integer decimal
+                            type: 17, // Native visual Container frame
+                            accent_color: 9031664, // Hex #89CFF0 in decimal format
                             components: [
                                 {
                                     type: 1, // ActionRow holding the interactive select menu
@@ -47,6 +54,13 @@ module.exports = {
                                             placeholder: placeholders[selectedKey],
                                             disabled: disabled,
                                             options: [
+                                                {
+                                                    label: 'Home Menu',
+                                                    description: 'Return to the welcome landing screen',
+                                                    value: 'help_landing',
+                                                    emoji: { id: null, name: '🏠' },
+                                                    default: selectedKey === 'help_landing'
+                                                },
                                                 {
                                                     label: 'Core Utilities',
                                                     description: 'View bot core and latency configuration',
@@ -78,8 +92,8 @@ module.exports = {
                 };
             };
 
-            // 3. Send initial menu using reply
-            const initialMessage = await message.reply(buildV2Payload('help_main', false));
+            // 3. Send initial menu pointing to 'help_landing'
+            const initialMessage = await message.reply(buildV2Payload('help_landing', false));
 
             // 4. Create the menu collection listener loop
             const collector = initialMessage.createMessageComponentCollector({ time: 120000 });
@@ -88,13 +102,13 @@ module.exports = {
                 if (interaction.user.id !== message.author.id) {
                     return interaction.reply({ content: '❌ This menu is not for you!', ephemeral: true });
                 }
-                const selectedValue = interaction.values[0]; // Access string index safely
+                const selectedValue = interaction.values[0]; // Safely grab string index 
                 await interaction.update(buildV2Payload(selectedValue, false));
             });
 
             collector.on('end', async () => {
                 try {
-                    const finalValue = collector.collected.last()?.values[0] || 'help_main';
+                    const finalValue = collector.collected.last()?.values[0] || 'help_landing';
                     await initialMessage.edit(buildV2Payload(finalValue, true));
                 } catch (err) {}
             });
