@@ -37,12 +37,13 @@ module.exports = {
 
                 // Create the embed visual container block
                 const helpEmbed = new EmbedBuilder()
-                    .setColor('#89CFF0') // Your signature light blue color accent
+                    .setColor('#89CFF0') 
                     .setTitle(titles[selectedKey])
                     .setDescription(contents[selectedKey]);
 
                 return {
-                    embeds: [helpEmbed], // Embed array structure
+                    flags: 32768, // Added your flag configuration property back
+                    embeds: [helpEmbed], 
                     components: [
                         {
                             type: 1, // ActionRow
@@ -85,7 +86,7 @@ module.exports = {
                 if (interaction.user.id !== message.author.id) {
                     return interaction.reply({ content: '❌ This menu is not for you!', ephemeral: true });
                 }
-                const selectedValue = interaction.values[0]; // Safely grab string index 
+                const selectedValue = interaction.values[0]; 
                 await interaction.update(buildV2Payload(selectedValue, false));
             });
 
