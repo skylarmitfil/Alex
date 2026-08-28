@@ -1,10 +1,10 @@
 module.exports = {
     name: 'ping',
     async execute(message) {
-        // Calculate the WebSocket ping
+        // This will show the lowest ping possiable for your bot.
         const wsPing = message.client.ws.ping;
         
-        // Reply to the text message
+        // This is what the bot will respond with.
         await message.reply(`🏓 Pong! here's my ping **${wsPing}ms**`);
     },
 };

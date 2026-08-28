@@ -1,24 +1,23 @@
-This is free and unencumbered software released into the public domain.
+Proprietary Software License Agreement
 
-Anyone is free to copy, modify, publish, use, compile, or distribute 
-this software, either in source code form or as a compiled
-binary, for any purpose, commercial or non-commercial, and by any
-means.
+Copyright (c) 2026 by Alex Willows. All rights reserved.
 
-In jurisdictions that recognize copyright laws, the author or authors
-of this software dedicate any and all copyright interest in the
-software to the public domain. We make this dedication for the benefit
-of the public at large and to the detriment of our heirs and
-successors. We intend this dedication to be an overt act of
-relinquishment in perpetuity of all present and future rights to this
-software under copyright law.
+DEFINITIONS
+Software refers to the source code, files, assets, commands, and documentation associated with this project. Author refers to Alex Willows.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
+GRANT OF LICENSE
+The Author grants you a personal, non-exclusive, non-transferable, and revocable license to download and view the source code of this Software solely for personal, educational, or review purposes.
 
-For more information, please refer to <https://unlicense.org>
+RESTRICTIONS
+You are strictly prohibited from performing any of the following actions without explicit, prior written permission from the Author:
+Copying, reproducing, or duplicating the Software, its unique command structures, or its code architecture.
+Modifying, altering, translating, or creating derivative works based on the Software.
+Distributing, sharing, publishing, or sublicensing the Software to any third party.
+Hosting, running, or publicly operating a live, functional instance of the Software for public or commercial use.
+Selling, renting, leasing, or commercially exploiting the Software or any portion of it.
+
+TERMINATION
+This license terminates automatically if you violate any of its terms. Upon termination, you must immediately destroy all copies of the Software in your possession.
+
+DISCLAIMER OF WARRANTY
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
