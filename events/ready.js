@@ -4,7 +4,7 @@ module.exports = {
     name: Events.ClientReady,
     once: true, // This event only runs once when the bot boots
     execute(readyClient) {
-        console.log(`${readyClient.user.tag} is now ONLINE!`);
+        console.log(`${readyClient.user.tag} is Avaliable.`);
 
         // Define your array of multiple status messages
         const statusOptions = [
