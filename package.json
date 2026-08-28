@@ -1,5 +1,5 @@
 {
-  "name": "Alexis", // replace with your bots name.
+  "name": "Alexis",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -13,5 +13,3 @@
     "dotenv": "^16.4.7"
   }
 }
-
-    once: true, // This event only runs once when the bot boots
